@@ -68,15 +68,15 @@ tail -f nohup.out
 修改本地kibana  config/yml
 
 ```yaml
-elasticsearch.hosts: ["http://114.115.168.139:9200"]
+elasticsearch.hosts: ["http://服务器IP:9200"]
 elasticsearch.username: "kibana_system"
-elasticsearch.password: "W36TSKN^t*PjSZSD9JYEY#FB*KKT&J"
-账号 elastic 密码 W36TSKN^t*PjSZSD9JYEY#FB*KKT&J
+elasticsearch.password: "**"
+账号 elastic 密码 **
 ```
 
 ####  创建索引结构、设置分词器
 
-``` json
+``` 
 PUT /question_v1
 {
   "settings": {
@@ -116,7 +116,7 @@ PUT /question_v1
 
 ###  踩坑
 
-1. 启动报错：`org.elasticsearch.bootstrap.StartupException: java.lang.RuntimeException: can not run elasticsearch as root` es不能用root用户启动，需要重新创建用户。
+启动报错：`org.elasticsearch.bootstrap.StartupException: java.lang.RuntimeException: can not run elasticsearch as root` es不能用root用户启动，需要重新创建用户。
 
 ```bash
 adduser es #新增用户
@@ -132,7 +132,9 @@ su es
 重新启动
 ```
 
-2. 启动报错：`bootstrap check failure [1] of [2]: max virtual memory areas vm.max_map_count [65530] is too low, increase to at least [262144]`
+---
+
+启动报错：`bootstrap check failure [1] of [2]: max virtual memory areas vm.max_map_count [65530] is too low, increase to at least [262144]`
 
 ```bash
 vim /etc/sysctl.conf
@@ -141,14 +143,18 @@ vim /etc/sysctl.conf
 vm.max_map_count = 262144
 ```
 
-3. 启动报错：`java.lang.IllegalStateException: failed to obtain node locks, tried [[/usr/share/elasticsearch/data]] with lock id [0]; maybe these locations are not writable or multiple nodes were started without increasing [node.max_local_storage_nodes] (was [1])?`
+----
+
+启动报错：`java.lang.IllegalStateException: failed to obtain node locks, tried [[/usr/share/elasticsearch/data]] with lock id [0]; maybe these locations are not writable or multiple nodes were started without increasing [node.max_local_storage_nodes] (was [1])?`
 
 ```bash
 ps -aux | grep elasticsearch
 kill -9 进程号
 ```
 
-4. 安装ik分词器插件启动后报错
+----
+
+**安装ik分词器插件启动后报错**
 
 版本
 
