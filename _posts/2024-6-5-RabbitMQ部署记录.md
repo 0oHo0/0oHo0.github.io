@@ -1,7 +1,7 @@
 ---
 layout:     post
-title:      OJ项目部署
-subtitle:   RabbitMQ部署记录
+title:      RabbitMQ部署记录
+subtitle:   OJ项目部署
 date:       2024-6-5
 author:     Duu
 header-img: img/post-bg-alibaba.jpg
